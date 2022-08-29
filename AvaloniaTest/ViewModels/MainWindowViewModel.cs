@@ -91,6 +91,8 @@ namespace AvaloniaTest.ViewModels
             return ListImage;
         }
 
+        
+
 
         public async void GetScreenShotAsync(DateTime startDate, DateTime endDate)
         {
