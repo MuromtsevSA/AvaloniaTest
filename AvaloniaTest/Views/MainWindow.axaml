@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaTest.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Background="Gray"
+		WindowState="Normal"
+		WindowStartupLocation="CenterScreen"
+        x:Class="AvaloniaTest.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaTest">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+	<Window.KeyBindings>
+		<KeyBinding Command="{Binding ScreenShotCommand}" Gesture="Alt+F5"/>
+	</Window.KeyBindings>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="300" />
+			<ColumnDefinition Width="500" />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="100" />
+			<RowDefinition />
+			<RowDefinition Height="100" />
+		</Grid.RowDefinitions>
+		<Image
+            Grid.Row="1"
+            Source="{Binding Images}" />
+		<ListBox Items="{Binding GetImage}" Grid.Row="1" Grid.Column="1" Margin="0,0,100,0">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+						<Image Source="{Binding}" Width="100" Height="100"/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		
+
+		<Button Grid.Column="1" IsEnabled="True" Grid.Row="2" Width="100" Content="Получить" Height="30" HorizontalAlignment="Center" Margin="0,0,50,0" Command="{Binding OpenWindowCommand}"/>
+		<TextBlock Text="Введите начальную дату" Grid.Row="2"  Margin="20,0,0,0" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+		<TextBox Grid.Row="2"  Text="{Binding Path=StartDate, Mode=TwoWay}"  Width="150" Height="30" HorizontalAlignment="Left" Margin="20,0,0,0"/>
+		<TextBlock Text="Введите конечную дату" Grid.Row="2" Grid.ColumnSpan="2"   Margin="0,0,110,0" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+		<TextBox Grid.Row="2" Text="{Binding Path=EndDate, Mode=TwoWay}"  Grid.ColumnSpan="2"  Width="150" Height="30" HorizontalAlignment="Center" Margin="0,0,150,0" />
+	</Grid>
+</Window>
